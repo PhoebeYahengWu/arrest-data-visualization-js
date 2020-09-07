@@ -6,14 +6,20 @@ dropdown.append('<option selected="true" disabled>Choose Arrest Type</option>');
 dropdown.prop('selectedIndex', 0);
 
 const url = 'https://data.cityofnewyork.us/resource/uip8-fykc.json';
-
+let obj = {};
 // Populate dropdown with list of provinces
 $.getJSON(url, function (data) {
-  $.each(data, function (key, entry) {
-    dropdown.append($('<option></option>').attr('value', entry.abbreviation).text(entry.ofns_desc));
-  })
-});
+    if (data.length) {
+      for (let i = 0; i < data.length; i++) {
+        var key = data[i].ofns_desc;
+        if (key) obj[key] = true;
+      }
+    }
 
+    $.each(obj, function (key, entry) {
+            dropdown.append($('<option></option>').attr('value', key).text(key.toLowerCase()));
+    })
+});
 
 
 // var apiKey = "HbAqyAns3LoXacb0KaH60uoNyxmampoE"
