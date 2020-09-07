@@ -1,0 +1,9 @@
+  #mapid {
+    height: 55vh;
+  }
+  
+  select:focus,
+  select:hover {
+    outline: none !important;
+    box-shadow: none !important;
+  }
